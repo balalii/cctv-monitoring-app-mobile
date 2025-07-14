@@ -9,8 +9,15 @@ import {
   Linking,
   TouchableOpacity,
 } from 'react-native';
-import { Info, Globe, RefreshCcw, Cctv, Heart } from 'lucide-react-native';
-import { LinearGradient } from 'expo-linear-gradient'; // Pastikan Anda telah menginstal expo-linear-gradient
+import {
+  Info,
+  Globe,
+  RefreshCcw,
+  Github,
+  SquareArrowOutUpRight,
+} from 'lucide-react-native';
+import { LinearGradient } from 'expo-linear-gradient'; // Make sure you have expo-linear-gradient installed
+import { Image } from 'expo-image';
 
 export default function SettingsScreen() {
   return (
@@ -35,7 +42,12 @@ export default function SettingsScreen() {
         <View style={styles.card}>
           <View style={styles.cardHeader}>
             <View style={styles.appIconContainer}>
-              <Cctv size={24} color="#000000" />
+              <Image
+                style={styles.image}
+                source={require('../../assets/images/icon.png')}
+                contentFit="cover"
+                transition={1000}
+              />
             </View>
             <View>
               <Text style={styles.appName}>ATCS Monitor Indonesia</Text>
@@ -55,17 +67,17 @@ export default function SettingsScreen() {
 
         {/* Informasi Aplikasi */}
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>Status & Informasi</Text>
+          <Text style={styles.cardTitle}>Status Server</Text>
           {/* Server Status */}
           <TouchableOpacity style={styles.infoRow} activeOpacity={0.7}>
             <View style={styles.infoIconContainer}>
-              <Globe size={20} color="#34d399" />
+              <Globe size={20} color="#10b981" />
             </View>
             <View style={styles.infoTextContainer}>
               <Text style={styles.infoLabel}>Server Status</Text>
               <View style={styles.statusBadge}>
                 <View
-                  style={[styles.statusDot, { backgroundColor: '#34d399' }]}
+                  style={[styles.statusDot, { backgroundColor: '#10b981' }]}
                 />
                 <Text style={styles.statusText}>Online</Text>
               </View>
@@ -85,21 +97,33 @@ export default function SettingsScreen() {
           </TouchableOpacity>
         </View>
 
+        {/* Collab */}
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Kolaborasi</Text>
+          {/* Server Status */}
+          <TouchableOpacity
+            onPress={() =>
+              Linking.openURL('https://github.com/balalii/cctv-monitoring')
+            }
+            style={styles.infoRow}
+            activeOpacity={0.7}
+          >
+            <View style={styles.infoIconContainer}>
+              <Github size={20} color="black" />
+            </View>
+            <View style={styles.infoTextContainer}>
+              <Text style={styles.infoLabel}>GitHub Repository </Text>
+              <View>
+                <View />
+                <SquareArrowOutUpRight size={20} color="black" />
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
+
         {/* Footer */}
         <View style={styles.footer}>
           <Text style={styles.footerText}>
-            Made with 🖤, {" "}
-            <Text
-              style={styles.link}
-              onPress={() =>
-                Linking.openURL('https://github.com/balalii/cctv-monitoring')
-              }
-            >
-              want to collaborate?
-            </Text>
-          </Text>
-
-          <Text style={styles.footerLink}>
             © {new Date().getFullYear()} ATCS Monitor Indonesia
           </Text>
         </View>
@@ -111,7 +135,7 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f3f4f6', // Warna latar belakang lebih lembut
+    backgroundColor: '#f3f4f6', // Softer background color
   },
   header: {
     paddingTop: 60,
@@ -139,7 +163,7 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#ffffff',
-    borderRadius: 16, // Sudut lebih bulat
+    borderRadius: 16, // More rounded corners
     padding: 20,
     marginBottom: 20,
     shadowColor: '#0000007c',
@@ -156,10 +180,9 @@ const styles = StyleSheet.create({
   appIconContainer: {
     width: 48,
     height: 48,
-    borderRadius: 24,
-    backgroundColor: '#66666628',
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'hidden', // Add this to contain the image within the rounded border
   },
   appName: {
     fontSize: 18,
@@ -261,5 +284,9 @@ const styles = StyleSheet.create({
   },
   link: {
     textDecorationLine: 'underline',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
 });

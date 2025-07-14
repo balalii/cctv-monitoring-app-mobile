@@ -90,7 +90,7 @@ export default function MonitorScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-      
+
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity
@@ -100,12 +100,9 @@ export default function MonitorScreen() {
         >
           <ArrowLeft size={24} color="#374151" />
         </TouchableOpacity>
-        
-        <View style={styles.titleContainer}>
-          <Shield size={20} color="#000000" />
-          <Text style={styles.headerTitle}>ATCS Monitor</Text>
-        </View>
-        
+
+        <View style={styles.titleContainer}></View>
+
         <TouchableOpacity style={styles.reloadButton} onPress={reload}>
           <RefreshCw size={24} color="#374151" />
         </TouchableOpacity>
@@ -113,11 +110,15 @@ export default function MonitorScreen() {
 
       {/* Connection Status */}
       <View style={styles.statusBar}>
-        <Wifi size={16} color={error ? "#ef4444" : "#10b981"} />
-        <Text style={[styles.statusText, { color: error ? "#ef4444" : "#10b981" }]}>
-          {error ? "Disconnected" : loading ? "Connecting..." : "Connected"}
+        <Wifi size={16} color={error ? '#ef4444' : '#10b981'} />
+        <Text
+          style={[styles.statusText, { color: error ? '#ef4444' : '#10b981' }]}
+        >
+          {error ? 'Disconnected' : loading ? 'Connecting...' : 'Connected:'}
         </Text>
-        <Text style={styles.statusLocation}>Indonesia</Text>
+        {(!error && !loading) && (
+          <Text style={styles.statusLocation}>Indonesia</Text>
+        )}
       </View>
 
       {/* WebView Container */}
@@ -148,9 +149,10 @@ export default function MonitorScreen() {
               cacheEnabled={true}
               thirdPartyCookiesEnabled={true}
               sharedCookiesEnabled={true}
-              userAgent={Platform.OS === 'ios' 
-                ? 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1'
-                : 'Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36'
+              userAgent={
+                Platform.OS === 'ios'
+                  ? 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1'
+                  : 'Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36'
               }
               originWhitelist={['*']}
               onShouldStartLoadWithRequest={(request) => {
@@ -158,12 +160,12 @@ export default function MonitorScreen() {
                 return true;
               }}
             />
-            
+
             {loading && (
               <View style={styles.loadingOverlay}>
                 <View style={styles.loadingCard}>
                   <ActivityIndicator size="large" color="#000000" />
-                  <Text style={styles.loadingText}>Loading CCTV Dashboard...</Text>
+                  <Text style={styles.loadingText}>Loading CCTV...</Text>
                 </View>
               </View>
             )}
@@ -184,6 +186,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
+    paddingTop: Platform.OS === 'android' ? 32 : 0,
     paddingVertical: 16,
     backgroundColor: '#ffffff',
     borderBottomWidth: 1,
@@ -226,9 +229,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 8,
-    backgroundColor: '#f9fafb',
+    backgroundColor: '#f3f3f3ff',
     borderBottomWidth: 1,
-    borderBottomColor: '#e5e7eb',
+    borderBottomColor: '#cacdd1ff',
   },
   statusText: {
     marginLeft: 8,
