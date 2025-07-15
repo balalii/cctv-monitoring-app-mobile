@@ -10,7 +10,7 @@ import {
   Platform,
 } from 'react-native';
 import { WebView } from 'react-native-webview';
-import { ArrowLeft, RefreshCw, Wifi, WifiOff, Shield } from 'lucide-react-native';
+import { ArrowLeft, RefreshCw, Wifi, WifiOff } from 'lucide-react-native';
 
 const CCTV_URL = 'https://cctv-monitoring-six.vercel.app/';
 
@@ -94,32 +94,63 @@ export default function MonitorScreen() {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity
-          style={[styles.backButton, { opacity: canGoBack ? 1 : 0.3 }]}
+          style={[styles.backButton, { opacity: canGoBack ? 1 : 0 }]}
           onPress={goBack}
           disabled={!canGoBack}
         >
-          <ArrowLeft size={24} color="#374151" />
+          <ArrowLeft size={18} color="white" />
         </TouchableOpacity>
 
-        <View style={styles.titleContainer}></View>
+        <View style={styles.titleContainer}>
+          {/* Connection Status */}
+          <View style={styles.statusBar}>
+            <Wifi
+              size={16}
+              color={error ? '#ef4444' : loading ? '#b98c10ff' : '#10b981'}
+            />
+            <Text
+              style={[
+                styles.statusText,
+                {
+                  color: error ? '#ef4444' : loading ? '#b98c10ff' : '#10b981',
+                },
+              ]}
+            >
+              {error
+                ? 'Disconnected'
+                : loading
+                ? 'Connecting...'
+                : 'Connected:'}
+            </Text>
+            {!error && !loading && (
+              <Text style={styles.statusLocation}>Indonesia</Text>
+            )}
+          </View>
+        </View>
 
         <TouchableOpacity style={styles.reloadButton} onPress={reload}>
-          <RefreshCw size={24} color="#374151" />
+          <RefreshCw size={18} color="white" />
         </TouchableOpacity>
       </View>
 
       {/* Connection Status */}
-      <View style={styles.statusBar}>
-        <Wifi size={16} color={error ? '#ef4444' : '#10b981'} />
+      {/* <View style={styles.statusBar}>
+        <Wifi
+          size={16}
+          color={error ? '#ef4444' : loading ? '#b98c10ff' : '#10b981'}
+        />
         <Text
-          style={[styles.statusText, { color: error ? '#ef4444' : '#10b981' }]}
+          style={[
+            styles.statusText,
+            { color: error ? '#ef4444' : loading ? '#b98c10ff' : '#10b981' },
+          ]}
         >
           {error ? 'Disconnected' : loading ? 'Connecting...' : 'Connected:'}
         </Text>
-        {(!error && !loading) && (
+        {!error && !loading && (
           <Text style={styles.statusLocation}>Indonesia</Text>
         )}
-      </View>
+      </View> */}
 
       {/* WebView Container */}
       <View style={styles.webViewContainer}>
@@ -186,11 +217,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
-    paddingTop: Platform.OS === 'android' ? 32 : 0,
-    paddingVertical: 16,
-    backgroundColor: '#ffffff',
+    // paddingTop: Platform.OS === 'android' ? 32 : 0,
+    paddingTop: 32,
+    paddingBottom: 6,
+    backgroundColor: '#000',
     borderBottomWidth: 1,
-    borderBottomColor: '#e5e7eb',
+    borderBottomColor: '#000',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -200,9 +232,9 @@ const styles = StyleSheet.create({
   backButton: {
     padding: 8,
     borderRadius: 8,
-    backgroundColor: '#f9fafb',
+    backgroundColor: '#000000',
     borderWidth: 1,
-    borderColor: '#e5e7eb',
+    borderColor: '#000000',
   },
   titleContainer: {
     flex: 1,
@@ -220,18 +252,18 @@ const styles = StyleSheet.create({
   reloadButton: {
     padding: 8,
     borderRadius: 8,
-    backgroundColor: '#f9fafb',
+    backgroundColor: '#000000',
     borderWidth: 1,
-    borderColor: '#e5e7eb',
+    borderColor: '#000000',
   },
   statusBar: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 8,
-    backgroundColor: '#f3f3f3ff',
+    // backgroundColor: '#111111ff',
     borderBottomWidth: 1,
-    borderBottomColor: '#cacdd1ff',
+    // borderBottomColor: '#000000ff',
   },
   statusText: {
     marginLeft: 8,

@@ -13,13 +13,15 @@ import {
   Info,
   Globe,
   RefreshCcw,
-  Github,
   SquareArrowOutUpRight,
+  Code2,
+  Github,
 } from 'lucide-react-native';
-import { LinearGradient } from 'expo-linear-gradient'; // Make sure you have expo-linear-gradient installed
+import { LinearGradient } from 'expo-linear-gradient'; 
 import { Image } from 'expo-image';
 
 export default function SettingsScreen() {
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
@@ -74,7 +76,7 @@ export default function SettingsScreen() {
               <Globe size={20} color="#10b981" />
             </View>
             <View style={styles.infoTextContainer}>
-              <Text style={styles.infoLabel}>Server Status</Text>
+              <Text style={styles.infoLabel}>Server </Text>
               <View style={styles.statusBadge}>
                 <View
                   style={[styles.statusDot, { backgroundColor: '#10b981' }]}
@@ -112,7 +114,7 @@ export default function SettingsScreen() {
               <Github size={20} color="black" />
             </View>
             <View style={styles.infoTextContainer}>
-              <Text style={styles.infoLabel}>GitHub Repository </Text>
+              <Text style={styles.infoLabel}>Github Repository </Text>
               <View>
                 <View />
                 <SquareArrowOutUpRight size={20} color="black" />
@@ -139,7 +141,7 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingTop: 60,
-    paddingBottom: 24,
+    paddingBottom: 20,
     paddingHorizontal: 24,
     flexDirection: 'row',
     alignItems: 'center',
@@ -163,7 +165,7 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#ffffff',
-    borderRadius: 16, // More rounded corners
+    borderRadius: 10, // More rounded corners
     padding: 20,
     marginBottom: 20,
     shadowColor: '#0000007c',
