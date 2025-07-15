@@ -7,15 +7,15 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          height: 90,
-          paddingTop:5,
+          height: 53,
+          paddingTop:0,
           backgroundColor: '#ffffff',
           borderTopColor: '#e5e7eb',
           borderTopWidth: 1,
           shadowColor: '#000',
           shadowOffset: { width: 0, height: -2 },
           shadowOpacity: 0.1,
-          shadowRadius: 8,
+          shadowRadius: 2,
           elevation: 8,
         },
         tabBarActiveTintColor: '#000000',

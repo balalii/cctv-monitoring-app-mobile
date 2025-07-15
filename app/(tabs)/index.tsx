@@ -106,13 +106,13 @@ export default function MonitorScreen() {
           <View style={styles.statusBar}>
             <Wifi
               size={16}
-              color={error ? '#ef4444' : loading ? '#b98c10ff' : '#10b981'}
+              color={error ? '#ef4444' : loading ? '#e3aa0dff' : '#10b981'}
             />
             <Text
               style={[
                 styles.statusText,
                 {
-                  color: error ? '#ef4444' : loading ? '#b98c10ff' : '#10b981',
+                  color: error ? '#ef4444' : loading ? '#e3aa0dff' : '#10b981',
                 },
               ]}
             >
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     paddingBottom: 6,
     backgroundColor: '#000',
     borderBottomWidth: 1,
-    borderBottomColor: '#000',
+    borderBottomColor: '#222222ff',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -297,12 +297,12 @@ const styles = StyleSheet.create({
   loadingCard: {
     backgroundColor: '#ffffff',
     padding: 32,
-    borderRadius: 16,
+    borderRadius: 8,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
-    shadowRadius: 12,
+    shadowRadius: 0.6,
     elevation: 8,
     borderWidth: 1,
     borderColor: '#e5e7eb',

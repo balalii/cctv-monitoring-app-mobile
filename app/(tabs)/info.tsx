@@ -48,7 +48,7 @@ export default function SettingsScreen() {
                 style={styles.image}
                 source={require('../../assets/images/icon.png')}
                 contentFit="cover"
-                transition={1000}
+                transition={100}
               />
             </View>
             <View>
@@ -93,7 +93,7 @@ export default function SettingsScreen() {
               <RefreshCcw size={20} color="#000000" />
             </View>
             <View style={styles.infoTextContainer}>
-              <Text style={styles.infoLabel}>Last Updated</Text>
+              <Text style={styles.infoLabel}>Last updated</Text>
               <Text style={styles.infoValue}>Just now</Text>
             </View>
           </TouchableOpacity>
@@ -114,7 +114,7 @@ export default function SettingsScreen() {
               <Github size={20} color="black" />
             </View>
             <View style={styles.infoTextContainer}>
-              <Text style={styles.infoLabel}>Github Repository </Text>
+              <Text style={styles.infoLabel}>Github repository </Text>
               <View>
                 <View />
                 <SquareArrowOutUpRight size={20} color="black" />
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     fontSize: 14,
-    color: '#e0e7ff',
+    color: '#b3b3b3ff',
     opacity: 0.9,
   },
   scrollView: {
@@ -180,6 +180,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   appIconContainer: {
+    backgroundColor: '#ffffff', // Fallback color
     width: 48,
     height: 48,
     justifyContent: 'center',
@@ -290,5 +291,6 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
+    backgroundColor: '#ffffff', // Fallback color
   },
 });
